@@ -2,12 +2,15 @@ package com.marcosk.pokedexegsys.model
 
 data class Pokemon (
 
-    var id: Int = 0,
-    var num: String? = null,
-    var name: String? = null,
-    var img: String? = null,
-    var type: List<String>? = null,
-    var height: String? = null,
-    var weight: String? = null
+    var num: Int? =null,
+    var name: String,
+    var url: String,
+    var type: List<PokemonType>? = null,
+//    var height: String? = null,
+//    var weight: String? = null
 
-)
+){
+    val formattedNumber = num.toString().padStart(1,'0')
+    val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$formattedNumber.png"
+}
+

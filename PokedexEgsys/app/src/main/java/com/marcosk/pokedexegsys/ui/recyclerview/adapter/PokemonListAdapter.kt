@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.marcosk.pokedexegsys.databinding.ActivityPokemonItemBinding
 import com.marcosk.pokedexegsys.model.Pokemon
+import java.util.*
 
 class PokemonListAdapter(
     var context : Context,
-    var pokedex: List<Pokemon>
+    var pokedex: List<Pokemon?>
     ) : RecyclerView.Adapter<PokemonListAdapter.ViewHolder> () {
 
 
@@ -26,11 +27,20 @@ class PokemonListAdapter(
 
     class ViewHolder(private val binding: ActivityPokemonItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun binding(pokemon: Pokemon) {
+        fun binding(pokemon: Pokemon?) {
             val name = binding.pokemonItemName
-            name.text = pokemon.name
 
-            binding.pokemonItemImg.load(pokemon.img)
+            pokemon?.let {
+                binding.pokemonItemImg.load(pokemon.imageUrl)
+                name.text = pokemon.name.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(
+                        Locale.getDefault()
+                    ) else it.toString()
+                }
+            }
+
+
+
         }
 
     }
