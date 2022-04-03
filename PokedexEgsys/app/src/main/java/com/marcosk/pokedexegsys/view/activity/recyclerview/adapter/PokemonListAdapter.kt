@@ -1,4 +1,4 @@
-package com.marcosk.pokedexegsys.ui.recyclerview.adapter
+package com.marcosk.pokedexegsys.view.activity.recyclerview.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

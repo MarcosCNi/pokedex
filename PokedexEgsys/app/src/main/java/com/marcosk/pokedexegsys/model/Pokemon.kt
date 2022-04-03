@@ -1,13 +1,14 @@
 package com.marcosk.pokedexegsys.model
 
-data class Pokemon (
+data class Pokemon(
 
     var num: Int? =null,
     var name: String,
     var url: String,
     var type: List<PokemonType>? = null,
-//    var height: String? = null,
-//    var weight: String? = null
+    var height: Int? = null,
+    var weight: Int? = null,
+    var games: List<String>
 
 ){
     val formattedNumber = num.toString().padStart(1,'0')

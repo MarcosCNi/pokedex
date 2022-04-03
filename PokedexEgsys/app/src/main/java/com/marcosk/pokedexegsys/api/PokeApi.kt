@@ -2,7 +2,6 @@ package com.marcosk.pokedexegsys.api
 
 import com.marcosk.pokedexegsys.api.model.PokemonApiResult
 import com.marcosk.pokedexegsys.api.model.PokemonsApiResult
-import com.marcosk.pokedexegsys.model.Pokemon
 import com.marcosk.pokedexegsys.util.NetworkUtils.Companion.getRetrofitInstance
 
 object PokeApi {

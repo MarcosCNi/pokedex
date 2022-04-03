@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PokedexEgsys">
 
         <activity
-            android:name=".ui.activity.PokemonListActivity"
+            android:name="com.marcosk.pokedexegsys.view.activity.PokemonListActivity"
             android:exported="true">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />

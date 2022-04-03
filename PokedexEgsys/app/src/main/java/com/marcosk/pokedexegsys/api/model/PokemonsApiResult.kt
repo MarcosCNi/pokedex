@@ -29,7 +29,6 @@ data class PokemonTypeSlot (
 )
 
 data class PokemonGameIndices(
-    val game_index: Int,
     val version: GameVersion
 )
 
