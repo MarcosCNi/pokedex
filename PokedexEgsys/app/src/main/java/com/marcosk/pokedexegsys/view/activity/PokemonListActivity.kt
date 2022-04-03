@@ -9,8 +9,8 @@ import com.marcosk.pokedexegsys.R
 import com.marcosk.pokedexegsys.databinding.ActivityPokemonListBinding
 import com.marcosk.pokedexegsys.model.Pokemon
 import com.marcosk.pokedexegsys.view.activity.recyclerview.adapter.PokemonListAdapter
-import com.marcosk.pokedexegsys.view.viewmodel.PokemonViewModel
-import com.marcosk.pokedexegsys.view.viewmodel.PokemonViewModelFactory
+import com.marcosk.pokedexegsys.viewmodel.PokemonViewModel
+import com.marcosk.pokedexegsys.viewmodel.PokemonViewModelFactory
 
 class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list) {
 

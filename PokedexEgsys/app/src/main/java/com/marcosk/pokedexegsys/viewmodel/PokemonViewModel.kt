@@ -1,4 +1,4 @@
-package com.marcosk.pokedexegsys.view.viewmodel
+package com.marcosk.pokedexegsys.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,7 +41,6 @@ class PokemonViewModel : ViewModel(){
                     )
 
                 }
-
             })
         }
     }

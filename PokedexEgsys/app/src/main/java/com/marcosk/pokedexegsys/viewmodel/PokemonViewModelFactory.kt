@@ -1,4 +1,4 @@
-package com.marcosk.pokedexegsys.view.viewmodel
+package com.marcosk.pokedexegsys.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
