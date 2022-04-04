@@ -10,13 +10,14 @@ import com.marcosk.pokedexegsys.model.Pokemon
 import java.util.*
 
 class PokemonListAdapter(
-    var context : Context,
-    var pokedex: List<Pokemon?>
-    ) : RecyclerView.Adapter<PokemonListAdapter.ViewHolder> () {
+    private var context : Context,
+    private var pokedex: List<Pokemon?>
+    ) : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 
+    private var pokemonList = pokedex.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var binding = ActivityPokemonItemBinding
+        val binding = ActivityPokemonItemBinding
             .inflate(
                 LayoutInflater.from(context),
                 parent,
@@ -29,7 +30,7 @@ class PokemonListAdapter(
 
         fun binding(pokemon: Pokemon?) {
             val name = binding.pokemonItemName
-
+            val num = binding.pokemonItemNumber
             pokemon?.let {
                 binding.pokemonItemImg.load(pokemon.imageUrl)
                 name.text = pokemon.name.replaceFirstChar {
@@ -37,18 +38,30 @@ class PokemonListAdapter(
                         Locale.getDefault()
                     ) else it.toString()
                 }
+                num.text = "Nº ${pokemon.num}"
             }
-
-
-
         }
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var data = pokedex[position]
+        val data = pokemonList[position]
         holder.binding(data)
     }
 
-    override fun getItemCount() = pokedex.size
+    override fun getItemCount() = pokemonList.size
+
+    fun searchPokemon(query: String): Boolean {
+        pokemonList.clear()
+        pokemonList.addAll(pokedex.filter { it!!.name.contains(query, true) })
+
+        notifyDataSetChanged()
+
+        return pokemonList.isEmpty()
+    }
+
+    fun clearSearch(){
+        pokemonList = pokedex.toMutableList()
+        notifyDataSetChanged()
+    }
+
 }
