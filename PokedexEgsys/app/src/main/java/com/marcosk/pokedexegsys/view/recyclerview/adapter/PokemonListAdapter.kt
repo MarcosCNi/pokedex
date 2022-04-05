@@ -1,4 +1,4 @@
-package com.marcosk.pokedexegsys.view.activity.recyclerview.adapter
+package com.marcosk.pokedexegsys.view.recyclerview.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,7 +11,8 @@ import java.util.*
 
 class PokemonListAdapter(
     private var context : Context,
-    private var pokedex: List<Pokemon?>
+    private var pokedex: List<Pokemon?>,
+    var itemClick: ItemClick
     ) : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 
     private var pokemonList = pokedex.toMutableList()
@@ -26,7 +27,13 @@ class PokemonListAdapter(
         return ViewHolder(binding)
     }
 
+    interface ItemClick{
+        fun onPokemonClick(pokemon: Pokemon?)
+    }
+
     class ViewHolder(private val binding: ActivityPokemonItemBinding) : RecyclerView.ViewHolder(binding.root){
+
+        val cardView = binding.pokemonItemCard
 
         fun binding(pokemon: Pokemon?) {
             val name = binding.pokemonItemName
@@ -44,8 +51,12 @@ class PokemonListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = pokemonList[position]
-        holder.binding(data)
+        val pokemon = pokemonList[position]
+        holder.cardView.setOnClickListener{
+            itemClick.onPokemonClick(pokemon)
+        }
+        holder.binding(pokemon)
+
     }
 
     override fun getItemCount() = pokemonList.size
@@ -58,10 +69,4 @@ class PokemonListAdapter(
 
         return pokemonList.isEmpty()
     }
-
-    fun clearSearch(){
-        pokemonList = pokedex.toMutableList()
-        notifyDataSetChanged()
-    }
-
 }
