@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
+import com.bumptech.glide.Glide
 import com.marcosk.pokedexegsys.databinding.ActivityPokemonItemBinding
 import com.marcosk.pokedexegsys.model.Pokemon
 import java.util.*
@@ -32,7 +32,7 @@ class PokemonListAdapter(
             val name = binding.pokemonItemName
             val num = binding.pokemonItemNumber
             pokemon?.let {
-                binding.pokemonItemImg.load(pokemon.imageUrl)
+                Glide.with(binding.pokemonItemCard).load(it.imageUrl).into(binding.pokemonItemImg)
                 name.text = pokemon.name.replaceFirstChar {
                     if (it.isLowerCase()) it.titlecase(
                         Locale.getDefault()

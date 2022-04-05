@@ -3,7 +3,6 @@ package com.marcosk.pokedexegsys.view.activity
 import android.os.Bundle
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.marcosk.pokedexegsys.R
@@ -22,8 +21,10 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list) {
         ViewModelProvider (this, PokemonViewModelFactory ())
             .get (PokemonViewModel::class.java)
     }
+    private val adapter by lazy {
+        PokemonListAdapter(this, viewModel.pokedex.value!!)
+    }
 
-    private lateinit var adapter: PokemonListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,6 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list) {
     private fun configRecyclerView(list: List<Pokemon?>) {
         binding.pokemonListRecyclerView.post{
             binding.pokemonListRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
-            adapter = PokemonListAdapter(this, list)
             binding.pokemonListRecyclerView.adapter = adapter
         }
     }
