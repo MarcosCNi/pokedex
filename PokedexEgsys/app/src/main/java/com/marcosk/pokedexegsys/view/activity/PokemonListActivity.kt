@@ -33,13 +33,24 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
         PokemonListAdapter(this, viewModel.pokedex.value!!, this)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         configPokemonViewModel()
         configSearchView()
+        configFloatingActionBtn()
         setContentView(binding.root)
     }
 
+    //config the Floating action Button
+    private fun configFloatingActionBtn() {
+        binding.pokemonListFloatingActionButton.setOnClickListener {
+            val randomPokemon = adapter.randomPokemon()
+            if (randomPokemon != null) {
+                setupDialog(randomPokemon)
+            }
+        }
+    }
 
     private fun configSearchView() {
         binding.pokemonListSearchView.clearFocus()
@@ -60,6 +71,7 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
         }
     }
 
+
     private fun configRecyclerView() {
         binding.pokemonListRecyclerView.post{
             binding.pokemonListRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
@@ -67,6 +79,7 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
         }
     }
 
+    //Set on pokemon card click
     override fun onPokemonClick(pokemon: Pokemon?) {
         if (pokemon != null){
             setupDialog(pokemon)
@@ -75,7 +88,6 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
 
     //Config the alert dialog
     private fun setupDialog(pokemon: Pokemon) {
-
         val build = AlertDialog.Builder(this)
         val bindingDialog = ActivityPokemonInfoBinding.inflate(layoutInflater)
 
@@ -89,10 +101,8 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
         dialog.show()
     }
 
-    private fun loadData(
-        bindingDialog: ActivityPokemonInfoBinding,
-        pokemon: Pokemon
-    ) {
+    //Load all the information displayed on alert dialog
+    private fun loadData(bindingDialog: ActivityPokemonInfoBinding, pokemon: Pokemon) {
         Glide.with(bindingDialog.pokemonInfo).load(pokemon.imageUrl)
             .into(bindingDialog.pokemonInfoImg)
 

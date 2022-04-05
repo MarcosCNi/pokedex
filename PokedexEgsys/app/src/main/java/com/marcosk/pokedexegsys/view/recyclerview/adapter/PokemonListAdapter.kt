@@ -40,10 +40,10 @@ class PokemonListAdapter(
             val num = binding.pokemonItemNumber
             pokemon?.let {
                 Glide.with(binding.pokemonItemCard).load(it.imageUrl).into(binding.pokemonItemImg)
-                name.text = pokemon.name.replaceFirstChar {
-                    if (it.isLowerCase()) it.titlecase(
+                name.text = pokemon.name.replaceFirstChar { name ->
+                    if (name.isLowerCase()) name.titlecase(
                         Locale.getDefault()
-                    ) else it.toString()
+                    ) else name.toString()
                 }
                 num.text = "Nº ${pokemon.num}"
             }
@@ -61,12 +61,16 @@ class PokemonListAdapter(
 
     override fun getItemCount() = pokemonList.size
 
+    //Return a list of searched pokemon
     fun searchPokemon(query: String): Boolean {
         pokemonList.clear()
         pokemonList.addAll(pokedex.filter { it!!.name.contains(query, true) })
-
         notifyDataSetChanged()
-
         return pokemonList.isEmpty()
+    }
+
+    //Return a random Pokemon
+    fun randomPokemon(): Pokemon? {
+        return pokemonList[(0 until (pokemonList.size)).random()]
     }
 }
