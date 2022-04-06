@@ -17,6 +17,8 @@ class PokemonListAdapter(
 
     private var pokemonList = pokedex.toMutableList()
 
+    private var isFiltered = false
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ActivityPokemonItemBinding
             .inflate(
@@ -64,9 +66,28 @@ class PokemonListAdapter(
     //Return a list of searched pokemon
     fun searchPokemon(query: String): Boolean {
         pokemonList.clear()
-        pokemonList.addAll(pokedex.filter { it!!.name.contains(query, true) })
+        pokemonList.addAll(pokedex.filter {
+            it!!.name.contains(query, true)
+        })
         notifyDataSetChanged()
         return pokemonList.isEmpty()
+    }
+
+    fun filterPokemon(query: String, position: Int){
+        pokemonList.clear()
+        if (position==0){
+            pokemonList = pokedex.toMutableList()
+        }else{
+            pokemonList.addAll(pokedex.filter {
+                if (it!!.type!!.size > 1){
+                    it!!.type?.get(0)!!.name.contains(query, true) || it!!.type?.get(1)!!.name.contains(query, true)
+                }else{
+                    it!!.type?.get(0)!!.name.contains(query, true)
+                }
+            })
+        }
+
+        notifyDataSetChanged()
     }
 
     //Return a random Pokemon

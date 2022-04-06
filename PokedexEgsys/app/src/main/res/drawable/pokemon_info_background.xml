@@ -13,6 +13,10 @@
         android:width="2dp"/>
 
     <solid
-        android:color="@color/colorSecondaryVariant"/>
+        android:color="@color/colorSecondaryVariant"
+        android:topLeftRadius="16dp"
+        android:topRightRadius="16dp"
+        android:bottomLeftRadius="16dp"
+        android:bottomRightRadius="16dp"/>
 
 </shape>

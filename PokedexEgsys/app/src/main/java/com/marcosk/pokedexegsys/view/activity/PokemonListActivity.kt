@@ -2,6 +2,8 @@ package com.marcosk.pokedexegsys.view.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -25,7 +27,6 @@ class PokemonListActivity
 
     private lateinit var dialog: AlertDialog
     private var isloaded = false
-
     private val binding by lazy {
         ActivityPokemonListBinding.inflate(layoutInflater)
     }
@@ -42,6 +43,7 @@ class PokemonListActivity
         setTheme(R.style.Theme_PokedexEgsys)
         configPokemonViewModel()
         configSearchView()
+        configPokemonFilter()
         configFloatingActionBtn()
         setContentView(binding.root)
     }
@@ -61,6 +63,7 @@ class PokemonListActivity
         }
     }
 
+    //Config the search bar
     private fun configSearchView() {
         binding.pokemonListSearchView.clearFocus()
         binding.pokemonListSearchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -74,13 +77,14 @@ class PokemonListActivity
         })
     }
 
+    //Setup all pokemon on viewModel
     private fun configPokemonViewModel() {
         viewModel.pokedex.observe(this) {
             configRecyclerView()
         }
     }
 
-
+    //Config the pkemon list
     private fun configRecyclerView() {
         binding.pokemonListRecyclerView.post{
             binding.pokemonListRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
@@ -123,10 +127,10 @@ class PokemonListActivity
             ) else it.toString()
         }
         bindingDialog.pokemonInfoNumber.text = "Nº ${pokemon.num}"
-        bindingDialog.pokemonInfoType1.text = pokemon?.type?.get(0)!!.name
+        bindingDialog.pokemonInfoType1.text = pokemon.type?.get(0)!!.name
         if (pokemon.type!!.size > 1) {
             bindingDialog.pokemonInfoType2.visibility = View.VISIBLE
-            bindingDialog.pokemonInfoType2.text = pokemon?.type?.get(1)!!.name
+            bindingDialog.pokemonInfoType2.text = pokemon.type?.get(1)!!.name
         } else {
             bindingDialog.pokemonInfoType2.visibility = View.GONE
         }
@@ -134,4 +138,15 @@ class PokemonListActivity
         bindingDialog.pokemonInfoHeight.text = "Height: ${pokemon.height}"
     }
 
+    //Filter all pokemons by the type
+    private fun configPokemonFilter() {
+        val types = resources.getStringArray(R.array.pokemon_types)
+        val arrayAdapter = ArrayAdapter(this, R.layout.filter_item, types)
+        binding.pokemonListFilterItem.setAdapter(arrayAdapter)
+        binding.pokemonListFilterItem.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                val typeSelected = parent!!.getItemAtPosition(position).toString()
+                adapter.filterPokemon(typeSelected, position)
+            }
+    }
 }
