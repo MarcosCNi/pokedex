@@ -3,6 +3,7 @@ package com.marcosk.pokedexegsys.view.activity
 import android.os.Bundle
 import android.view.View
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -17,10 +18,13 @@ import com.marcosk.pokedexegsys.viewmodel.PokemonViewModel
 import com.marcosk.pokedexegsys.viewmodel.PokemonViewModelFactory
 import java.util.*
 
-class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
-    PokemonListAdapter.ItemClick {
+class PokemonListActivity
+    : AppCompatActivity(),
+    PokemonListAdapter.ItemClick
+{
 
     private lateinit var dialog: AlertDialog
+    private var isloaded = false
 
     private val binding by lazy {
         ActivityPokemonListBinding.inflate(layoutInflater)
@@ -33,9 +37,9 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
         PokemonListAdapter(this, viewModel.pokedex.value!!, this)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_PokedexEgsys)
         configPokemonViewModel()
         configSearchView()
         configFloatingActionBtn()
@@ -45,10 +49,15 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
     //config the Floating action Button
     private fun configFloatingActionBtn() {
         binding.pokemonListFloatingActionButton.setOnClickListener {
-            val randomPokemon = adapter.randomPokemon()
-            if (randomPokemon != null) {
-                setupDialog(randomPokemon)
+            if (isloaded){
+                val randomPokemon = adapter.randomPokemon()
+                if (randomPokemon != null) {
+                    setupDialog(randomPokemon)
+                }
+            }else{
+                Toast.makeText(this,"Missing Pokemon", Toast.LENGTH_LONG).show()
             }
+
         }
     }
 
@@ -77,6 +86,7 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
             binding.pokemonListRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
             binding.pokemonListRecyclerView.adapter = adapter
         }
+        isloaded = true
     }
 
     //Set on pokemon card click
@@ -123,4 +133,5 @@ class PokemonListActivity : AppCompatActivity(R.layout.activity_pokemon_list),
         bindingDialog.pokemonInfoWeight.text = "Weight: ${pokemon.weight}"
         bindingDialog.pokemonInfoHeight.text = "Height: ${pokemon.height}"
     }
+
 }
