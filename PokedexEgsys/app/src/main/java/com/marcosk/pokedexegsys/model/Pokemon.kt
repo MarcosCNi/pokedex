@@ -8,7 +8,6 @@ data class Pokemon(
     var type: List<PokemonType>? = null,
     var height: Int? = null,
     var weight: Int? = null,
-    var games: List<String>
 
 ){
     val formattedNumber = num.toString().padStart(1,'0')

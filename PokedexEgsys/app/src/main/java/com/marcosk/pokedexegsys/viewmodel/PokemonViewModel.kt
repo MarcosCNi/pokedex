@@ -9,9 +9,9 @@ class PokemonViewModel : ViewModel(){
     var pokedex = MutableLiveData<List<Pokemon?>>()
 
     init {
-        Thread(Runnable {
+        Thread {
             loadPokedex()
-        }).start()
+        }.start()
     }
 
     private fun loadPokedex(
@@ -35,9 +35,6 @@ class PokemonViewModel : ViewModel(){
                         },
                         pokemonApiResult.height,
                         pokemonApiResult.weight,
-                        pokemonApiResult.game_indices.map { indice ->
-                            indice.version.name
-                        }
                     )
 
                 }

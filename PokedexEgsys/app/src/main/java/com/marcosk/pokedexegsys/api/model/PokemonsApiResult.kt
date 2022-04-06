@@ -20,18 +20,9 @@ data class PokemonApiResult (
     val height: Int,
     val weight: Int,
     val types: List<PokemonTypeSlot>,
-    val game_indices: List<PokemonGameIndices>
 )
 
 data class PokemonTypeSlot (
     val slot: Int,
     val type: PokemonType
-)
-
-data class PokemonGameIndices(
-    val version: GameVersion
-)
-
-data class GameVersion (
-    val name: String,
 )
