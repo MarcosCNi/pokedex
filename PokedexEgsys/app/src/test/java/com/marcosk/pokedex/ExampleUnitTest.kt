@@ -1,4 +1,4 @@
-package com.marcosk.pokedexegsys
+package com.marcosk.pokedex
 
 import org.junit.Test
 

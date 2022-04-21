@@ -1,9 +1,9 @@
-package com.marcosk.pokedexegsys.viewmodel
+package com.marcosk.pokedex.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.marcosk.pokedexegsys.api.PokeApi
-import com.marcosk.pokedexegsys.model.Pokemon
+import com.marcosk.pokedex.api.PokeApi
+import com.marcosk.pokedex.model.Pokemon
 
 class PokemonViewModel : ViewModel(){
     var pokedex = MutableLiveData<List<Pokemon?>>()

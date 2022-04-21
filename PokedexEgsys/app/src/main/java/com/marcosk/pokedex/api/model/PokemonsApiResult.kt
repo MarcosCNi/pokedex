@@ -1,6 +1,6 @@
-package com.marcosk.pokedexegsys.api.model
+package com.marcosk.pokedex.api.model
 
-import com.marcosk.pokedexegsys.model.PokemonType
+import com.marcosk.pokedex.model.PokemonType
 
 data class PokemonsApiResult (
     val count: Int,

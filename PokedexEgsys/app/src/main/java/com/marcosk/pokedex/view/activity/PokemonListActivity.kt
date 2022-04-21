@@ -1,4 +1,4 @@
-package com.marcosk.pokedexegsys.view.activity
+package com.marcosk.pokedex.view.activity
 
 import android.os.Bundle
 import android.view.View
@@ -11,13 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.marcosk.pokedexegsys.R
-import com.marcosk.pokedexegsys.databinding.ActivityPokemonInfoBinding
-import com.marcosk.pokedexegsys.databinding.ActivityPokemonListBinding
-import com.marcosk.pokedexegsys.model.Pokemon
-import com.marcosk.pokedexegsys.view.recyclerview.adapter.PokemonListAdapter
-import com.marcosk.pokedexegsys.viewmodel.PokemonViewModel
-import com.marcosk.pokedexegsys.viewmodel.PokemonViewModelFactory
+import com.marcosk.pokedex.R
+import com.marcosk.pokedex.databinding.ActivityPokemonInfoBinding
+import com.marcosk.pokedex.databinding.ActivityPokemonListBinding
+import com.marcosk.pokedex.model.Pokemon
+import com.marcosk.pokedex.view.recyclerview.adapter.PokemonListAdapter
+import com.marcosk.pokedex.viewmodel.PokemonViewModel
+import com.marcosk.pokedex.viewmodel.PokemonViewModelFactory
 import java.util.*
 
 class PokemonListActivity
@@ -41,7 +41,7 @@ class PokemonListActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Thread.sleep(2000)
-        setTheme(R.style.Theme_PokedexEgsys)
+        setTheme(R.style.Theme_Pokedex)
         configPokemonViewModel()
         configSearchView()
         configPokemonFilter()

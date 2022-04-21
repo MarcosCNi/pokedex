@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pokedex Egsys</string>
+    <string name="app_name">Pokedex</string>
 
     <string-array name="pokemon_types">
         <item>All Types</item>

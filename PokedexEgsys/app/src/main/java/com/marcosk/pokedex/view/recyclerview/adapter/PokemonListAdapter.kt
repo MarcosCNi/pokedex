@@ -1,12 +1,12 @@
-package com.marcosk.pokedexegsys.view.recyclerview.adapter
+package com.marcosk.pokedex.view.recyclerview.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.marcosk.pokedexegsys.databinding.ActivityPokemonItemBinding
-import com.marcosk.pokedexegsys.model.Pokemon
+import com.marcosk.pokedex.databinding.ActivityPokemonItemBinding
+import com.marcosk.pokedex.model.Pokemon
 import java.util.*
 
 class PokemonListAdapter(

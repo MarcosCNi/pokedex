@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.marcosk.pokedexegsys">
+    package="com.marcosk.pokedex">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Splash">
 
         <activity
-            android:name="com.marcosk.pokedexegsys.view.activity.PokemonListActivity"
+            android:name="com.marcosk.pokedex.view.activity.PokemonListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

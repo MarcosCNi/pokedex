@@ -1,7 +1,7 @@
-package com.marcosk.pokedexegsys.api
+package com.marcosk.pokedex.api
 
-import com.marcosk.pokedexegsys.api.model.PokemonApiResult
-import com.marcosk.pokedexegsys.api.model.PokemonsApiResult
+import com.marcosk.pokedex.api.model.PokemonApiResult
+import com.marcosk.pokedex.api.model.PokemonsApiResult
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
